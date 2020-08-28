@@ -1,0 +1,54 @@
+#%RAML 1.0
+title: API for employee login and post the list of employee who have not logged in to a webex room
+mediaType:
+  - application/json
+protocols:
+  - HTTP
+baseUri: /submit
+securitySchemes:
+  basic:
+    description: |
+      This API supports Basic Authentication.
+    type: Basic Authentication
+/code:
+  get:
+    displayName: listener
+    description: Used to get Code from webex api and also to generate the access_token and refresh_token, to store access_token and refresh_token in database(eidiko_123) table(token)
+/submit:
+  post:
+    body:
+      application/json:
+        examples:
+            {
+            "fname":"manideep",
+            "lname":"charugundla",
+            "empid":"547",
+            "Number":"7894512"
+          }
+    responses:
+      200:
+        body:
+          plain/text:
+            example:
+              thank you for login
+/Registration:
+  post:
+    displayName: listener
+    description: Used to insert the employee signup details(firstname,lastname,Username,password,PhoneNumber,Empid) into database(eidiko_123) table(Registration)
+    body:
+      application/json:
+        examples:
+          {
+            "firstname": "abc",
+            "lastname": "xyz",
+            "emailid": "abc@gmail.com",
+            "password" : "ghi",
+            "phone": "123456789",
+            "empid": "123"
+          }
+    responses:
+      200:
+       body:
+          application/json:
+            example:
+              Registration successful
